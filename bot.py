@@ -1,21 +1,19 @@
+import os
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-# Reemplaza con tu token de bot de Telegram
-TOKEN = "8068879567:AAFFh_CiTpHnJ2ahU_A5E34601W-KcEgToQ"
+# Obtener el TOKEN desde las variables de entorno
+TOKEN = os.getenv("8068879567:AAFFh_CiTpHnJ2ahU_A5E34601W-KcEgToQ")
 
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text("¡Hola! Soy un bot de Telegram. Usa /help para más opciones.")
+    update.message.reply_text("¡Hola! Soy un bot de Telegram funcionando en Railway.")
 
 def main():
-    # Crea el bot y lo conecta con Telegram
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
-    # Comandos del bot
     dp.add_handler(CommandHandler("start", start))
 
-    # Inicia el bot
     updater.start_polling()
     updater.idle()
 
